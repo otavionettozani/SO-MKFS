@@ -20,18 +20,7 @@ typedef uint32_t word;
 typedef uint16_t halfWord;
 
 
-//---------sections definitions---------//
-typedef enum Sections{
-	SectionSuperBlock = 0,
-	SectionInodeBitmap = 10,
-	SectionDataBitmap = 138,
-	SectionInodes = 6282,
-	SectionDataBlocks = 2374794
-} sections;
 
-
-#define InodeBitmapSize 128
-#define DataBitmapSize 6144
 
 
 //----------super block definitions ------------//
@@ -77,4 +66,19 @@ typedef struct Inode{
 
 void setBit(byte* destination, byte bit);
 void resetBit(byte* destination, byte bit);
+
+
+
+//---------sections definitions---------//
+#define InodeBitmapSize 128
+#define DataBitmapSize 6144
+typedef enum Sections{
+	SectionSuperBlock = 0,
+	SectionInodeBitmap = sizeof(superBlock),
+	SectionDataBitmap = sizeof(superBlock)+InodeBitmapSize,
+	SectionInodes = sizeof(superBlock)+InodeBitmapSize+DataBitmapSize,
+	SectionDataBlocks =  sizeof(superBlock)+InodeBitmapSize+DataBitmapSize+1024*sizeof(inode)
+} sections;
+
+
 

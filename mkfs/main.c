@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "inode.h"
+#include <time.h>
 
 
 #define FILE_SIZE 24*1024*1024
@@ -43,6 +44,7 @@ void createInodes(inode* inodes, word size){
 	setBit(&inodes[0].metadata.flags, FlagPmExec);
 	setBit(&inodes[0].metadata.flags, FlagPmRead);
 	setBit(&inodes[0].metadata.flags, FlagPmWrite);
+	inodes[0].metadata.time = (word)time(NULL);
 	
 	return;
 }
@@ -200,6 +202,6 @@ int main(int argc, char * argv[]) {
 	fclose(file);
 	
 	
-	printf("The File System was created succefully!");
+	printf("The File System was created succefully!\n");
 	
 }
