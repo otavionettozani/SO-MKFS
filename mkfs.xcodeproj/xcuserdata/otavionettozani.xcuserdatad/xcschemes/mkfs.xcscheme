@@ -64,7 +64,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-b 2KB arquivo_fs"
+            argument = "-b 512B arquivo_fs"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>

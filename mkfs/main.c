@@ -13,7 +13,7 @@
 #include <time.h>
 
 
-#define FILE_SIZE 24*1024*1024
+#define FILE_SIZE (24*1024*1024)
 
 
 FILE* createFile(char* name){
@@ -164,7 +164,8 @@ int main(int argc, char * argv[]) {
 	
 	superBlock sBlock;
 	
-	sBlock.inodesQuantity = 1024;
+	sBlock.inodesDirectories = 1;
+	sBlock.inodesFiles = 0;
 	sBlock.usedBlocks = 0;
 	sBlock.magicNumber = blockSize;
 	sBlock.rootInode = 0; //all of the offsets will be calculated via the Sections enum at inode.h
@@ -202,6 +203,9 @@ int main(int argc, char * argv[]) {
 	fclose(file);
 	
 	
-	printf("The File System was created succefully!\n");
+	halfWord maxNumberOfBlocks = (FILE_SIZE-SectionDataBlocks)/blockSize;
+	
+	printf("The File System was created succefully!\nOverhead:%g%%\n",(100.*SectionDataBlocks/FILE_SIZE));
+	printf("Unused Space (last incomplete block): %d B\n",(FILE_SIZE - SectionDataBlocks - blockSize*maxNumberOfBlocks));
 	
 }
