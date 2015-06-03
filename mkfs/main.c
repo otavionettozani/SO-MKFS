@@ -204,8 +204,10 @@ int main(int argc, char * argv[]) {
 	
 	
 	halfWord maxNumberOfBlocks = (FILE_SIZE-SectionDataBlocks)/blockSize;
-	
+	halfWord incompleteBlockSize = (FILE_SIZE - SectionDataBlocks - blockSize*maxNumberOfBlocks);
+
 	printf("The File System was created succefully!\nOverhead:%g%%\n",(100.*SectionDataBlocks/FILE_SIZE));
-	printf("Unused Space (last incomplete block): %d B\n",(FILE_SIZE - SectionDataBlocks - blockSize*maxNumberOfBlocks));
+	printf("Unused Space (last incomplete block): %d B\n",incompleteBlockSize);
+	printf("System supports %g%% of data\n",100.-(100.*(SectionDataBlocks+incompleteBlockSize)/FILE_SIZE));
 	
 }
