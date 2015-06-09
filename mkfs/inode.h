@@ -2,9 +2,8 @@
 //  inode.h
 //  mkfs
 //
-//  Created by Otávio Netto Zani on 25/05/15.
-//  Copyright (c) 2015 Otávio Netto Zani. All rights reserved.
-//
+//  Otavio Netto Zani - RA:103697
+//  Flavio Matheus Muniz Ribeiro da Silva - RA:146098
 
 #ifndef __mkfs__inode__
 #define __mkfs__inode__
